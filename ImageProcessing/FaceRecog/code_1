@@ -1,0 +1,49 @@
+>>> x = np.zeros((10,1))
+>>> x
+array([[0.],
+       [0.],
+       [0.],
+       [0.],
+       [0.],
+       [0.],
+       [0.],
+       [0.],
+       [0.],
+       [0.]])
+>>> x[5:,:] = 1.0
+>>> x
+array([[0.],
+       [0.],
+       [0.],
+       [0.],
+       [0.],
+       [1.],
+       [1.],
+       [1.],
+       [1.],
+       [1.]])
+>>> labels = np.array([0,0,0,0,0,0,0,1,1,1,1,1,1,1])
+>>> d = np.array([4,5,3,6,2,7,8,4,5,2,1,4,12,2])
+>>> indexes = np.argsort(d)
+>>> indexes
+array([10,  4,  9, 13,  2,  0,  7, 11,  1,  8,  3,  5,  6, 12],
+      dtype=int64)
+>>> labels[indexes]
+array([1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1])
+>>> labels[indexes][:5]
+array([1, 0, 1, 1, 0])
+>>> sortedLabels = labels[indexes][:5]
+>>> sortedLabels
+array([1, 0, 1, 1, 0])
+>>> np.unique(sortedLabels)
+array([0, 1])
+>>> np.unique(sortedLabels, return_counts = True)
+(array([0, 1]), array([2, 3], dtype=int64))
+>>> count = np.unique(sortedLabels, return_counts = True)
+>>> count
+(array([0, 1]), array([2, 3], dtype=int64))
+>>> count[0][1]
+1
+>>> count[0][np.argmax(count[1])]
+1
+>>>
